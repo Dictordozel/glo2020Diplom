@@ -43,6 +43,27 @@ window.addEventListener('DOMContentLoaded', () => {
     callBack();
 
 
+    
+
+    const sendCallBack = () => {
+
+        const postData = (formData) => {
+        return fetch('./server.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+                },
+            body: JSON.stringify(formData) 
+            });
+        };
+
+
+
+
+    };
+    sendCallBack();
+
+
 
 
 
