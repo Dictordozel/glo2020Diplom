@@ -5,49 +5,62 @@ window.addEventListener('DOMContentLoaded', () => {
     const callBack = () => {
         
         const popupCall = document.querySelector('.popup-call'),
-        popupContent = document.querySelector('.popup-content'),
-        popupDiscount = document.querySelector('.popup-discount');
-        console.log(popupContent);
+            popupCallContent = popupCall.querySelector('.popup-content'),
+            popupDiscount = document.querySelector('.popup-discount'),
+            popupDiscountContent = popupDiscount.querySelector('.popup-content');
             
-        const showPopup = (popup) => {
-            popup.style.display = 'block';
+        const animPopup = (elem) => {
+            
             let top = -70;
-            let animPopup = () => {
-                top += 5;
-                popupContent.style.top = top + '%';
+            let anim = () => {
+                top += 7;
+                elem.style.top = top + '%';
                     if(top <= 20) {
-                        requestAnimationFrame(animPopup);
+                        requestAnimationFrame(anim);
                     }      
             };
-            animPopup();
+            anim();
         };
 
-        // const closePopup = (popup) => {
+        const animClosePopup = (elem) => {
+            const closeBgCall = popupCall.closest('.popup'),
+                closeBgDiscount = popupDiscount.closest('.popup');
 
-        // };
+            let top = 20;
+                let anim = () => {
+                    top -= 7;
+                    elem.style.top = top + '%';
+                        if(top >= -70) {
+                            requestAnimationFrame(anim);
+                        } else {
+                            closeBgCall.style.display = 'none';
+                            closeBgDiscount.style.display = 'none'; 
+                        }      
+                };
+                anim();
 
+        };
+        
         document.addEventListener('click', event => {
-        let target = event.target;
-        if(target.matches('.call-btn')) {
-            event.preventDefault();
-            if(target.matches('.construct-btn')) {
-                console.log('Перехожу на другой уровень');
-                showPopup(popupDiscount);            
-            } else {
-                showPopup(popupCall);
-            }
-        }
-        if(target.matches('.popup-close')) {
-            popupCall.style.display = 'none';
-            popupDiscount.style.display = 'none';
-            } else {
-                target = target.matches('.popup-content');
-                if(target) {
-                    popupCall.style.display = 'none';
-                    popupDiscount.style.display = 'none';
+
+            let target = event.target;
+            if(target.matches('.popup-close')) {
+                animClosePopup(popupCallContent);
+                animClosePopup(popupDiscountContent); 
+                
+                } else if(target.matches('.call-btn')) {
+                    event.preventDefault();
+                    if(target.matches('.construct-btn')) {
+                        popupDiscount.style.display = 'block';
+                        animPopup(popupDiscountContent);            
+                        } else {
+                        popupCall.style.display = 'block';
+                        animPopup(popupCallContent);
+                        }
                 }
-            }
         });
+
+
     };
 
     callBack();
