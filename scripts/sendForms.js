@@ -55,9 +55,10 @@ const sendForms = () => {
         };
 
     allForms.forEach((elem) => {
+        const director = document.querySelector('.director-form');
         
-    elem.addEventListener('submit', (event) =>{
-        event.preventDefault();
+        elem.addEventListener('submit', (event) =>{
+            event.preventDefault();
 
         document.body.append(statusMessage);
         setTimeout(() => {
