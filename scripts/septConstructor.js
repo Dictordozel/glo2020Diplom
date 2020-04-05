@@ -12,7 +12,6 @@ window.addEventListener('DOMContentLoaded', () => {
         const showPanels = (index) => {
             for(let i = 0; i < panelCollapse.length; i++) {
                 if(index === i) {
-                    console.log(panelCollapse[i]);
                     panelCollapse[i].classList.toggle('in');
                 } else {
                     panelCollapse[i].classList.remove('in');
@@ -21,14 +20,11 @@ window.addEventListener('DOMContentLoaded', () => {
         };
 
         const showBtn = (index) => {
-            const popupDiscount = document.querySelectorAll('.popup-discount');
             for (let i = 0; i < constructBtn.length; i++) {
                 if(index === i) {
                     panelCollapse[i].classList.toggle('in');
                     panelCollapse[(i+1)].classList.toggle('in');
-                        if(i === constructBtn.length) {
-                            console.log(panelCollapse[i]);
-                        }
+                        
                 }
             }
         };
@@ -56,10 +52,6 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        
-        
-
-
         class Calculator {
                 constructor() {
 
@@ -67,14 +59,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
                 }
             }
-
-
-
-
-
-
-
-    };
+};
 
     septConstructor();
 

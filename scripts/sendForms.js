@@ -27,18 +27,13 @@ const sendForms = () => {
                                         background: rgba(255,255,255, 0.8);
                                         border-radius: 5px;`;
 
-                                        // rgba(242,140,7, 0.8);
-                                        // rgba(133,190,50, 0.8);
-                                        // text-shadow: 0 1px 1px green;
-                                        // border: 1px solid #85be32;
-
         const validInputs = () => {
             allInputs.forEach(elem => {
                 elem.addEventListener('input', () => {
                     if(elem.matches('.phone-user')) {
                         elem.value = elem.value.replace(/[^)(0-9\+\-]/g, '');
                     } else {
-                        elem.value = elem.value.replace(/[^?!0-9\-,.а-яА-ЯёЁ\s]/g, ''); // (/[^0-9?!\-,.а-яА-ЯёЁ\s]+$/g, '')
+                        elem.value = elem.value.replace(/[^?!0-9\-,.а-яА-ЯёЁ\s]/g, '');
                     }                        
                 });
             });
@@ -49,13 +44,12 @@ const sendForms = () => {
 
         const resetFormInputs = () => {
             allInputs.forEach(elem => {
-            console.log(elem);
             elem.value = '';
             });
         };
 
     allForms.forEach((elem) => {
-        const director = document.querySelector('.director-form');
+        //const director = document.querySelector('.director-form');
         
         elem.addEventListener('submit', (event) =>{
             event.preventDefault();

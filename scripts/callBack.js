@@ -55,7 +55,7 @@ window.addEventListener('DOMContentLoaded', () => {
             let target = event.target;
             if(target.matches('.popup-close')) {
                 animClosePopup(popupCallContent);
-                animClosePopup(popupDiscountContent)
+                animClosePopup(popupDiscountContent);
                 animClosePopup(popupCheckContent);
                 animClosePopup(popupConsultationtContent);
                 
@@ -94,12 +94,10 @@ window.addEventListener('DOMContentLoaded', () => {
             if(target.matches('.check-btn')) {
                 popupCheck.style.display = 'block';
                 animPopup(popupCheckContent);
-                console.log('SO FUCKING GOOD');
             }
 
             const questionForm = document.querySelector('.director-form'),
             validQuestion = questionForm.querySelector('input');
-            console.log(questionForm);
 
             if(target.matches('.consultation-btn')) {
                 if(validQuestion.value !== '') {
