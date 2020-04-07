@@ -113,7 +113,26 @@ window.addEventListener('DOMContentLoaded', () => {
 
                 } 
 
-                
+                popupCallInput.forEach(elem => {
+                    if(elem.value !== '') {
+                        if(target === callSubmit) {
+                            console.log(popupCallContent);
+                            animClosePopup(popupCallContent);
+        
+                        } else if (target === discountSubmit) {
+                            console.log(popupDiscountContent);
+                            animClosePopup(popupDiscountContent);
+        
+                        } else if(target === checkSubmit) {
+                            animClosePopup(popupCheckContent);
+        
+                        } else if (target === consultationSubmit) {
+                            animClosePopup(popupConsultationtContent);
+                        }
+                        console.log(elem);
+                    } 
+                });
+                        
 
             if(target.matches('.call-btn')) {
                    
