@@ -68,17 +68,11 @@ window.addEventListener('DOMContentLoaded', () => {
         const septCalculator = () => {
 
 
-            const accordion = document.getElementById('accordion'),
-            myonoffswitch = document.getElementById('myonoffswitch'),
+            const myonoffswitch = document.getElementById('myonoffswitch'),
             myonoffswitchTwo = document.getElementById('myonoffswitch-two'),
             selectBox = document.querySelectorAll('.select-box'),
-            titleText = document.querySelectorAll('.title-text'),
-            accordBodyTwo = document.getElementById('collapseTwo'),
-            formControl = document.querySelectorAll('.form-control'),
-            expandData = document.querySelectorAll('.expand'),
-            optionsControl = accordBodyTwo.querySelectorAll('option'),
-            control = document.getElementsByTagName('option');
-            //console.log(control);
+            titleText = document.querySelectorAll('.title-text');
+           
             
 
 
@@ -101,13 +95,9 @@ window.addEventListener('DOMContentLoaded', () => {
                 selectBox[3].style.display = 'none';
 
                 this.eventListeners();
-                this.grabData();
             
 
                 }
-
-
-                
 
                 constCheckbox() {
                     if(myonoffswitch.checked) {
@@ -128,22 +118,6 @@ window.addEventListener('DOMContentLoaded', () => {
                     
                 }
 
-                grabData(target) {
-
-                
-                    console.log(target);
-                      
-
-                    
-                        
-                
-                        
-                
-                    
-
-               
-
-                }
 
                 constCheckboxTwo() {
                     if(myonoffswitchTwo.checked) {
@@ -157,16 +131,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 eventListeners() {
                     myonoffswitch.addEventListener('change', this.constCheckbox);
                     myonoffswitchTwo.addEventListener('change', this.constCheckboxTwo);
-                    accordBodyTwo.addEventListener('change', event => {
-                    let target = event.target;  
-                
-                
-                this.grabData(target.value);
-                            
-                   });
-                   
-
-
+              
                 }
             }
 

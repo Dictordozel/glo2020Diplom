@@ -34,7 +34,6 @@ const sendForms = () => {
         const validInputs = () => {
             const collapseFour = document.getElementById('collapseFour'),
             distanseInput = collapseFour.querySelector('input');
-            console.log(distanseInput);
 
             allInputs.forEach(elem => {
                 elem.addEventListener('input', () => {
@@ -64,8 +63,8 @@ const sendForms = () => {
 
         elem.addEventListener('submit', (event) => {
             
-            let target = event.target;
-            console.log(target);
+            //let target = event.target;
+            console.log('SUBMIT');
             
             event.preventDefault();
             document.body.append(statusMessage);

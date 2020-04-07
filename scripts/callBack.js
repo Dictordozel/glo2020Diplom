@@ -12,8 +12,16 @@ window.addEventListener('DOMContentLoaded', () => {
             popupCheckContent = popupCheck.querySelector('.popup-content'),
             popupConsultationt = document.querySelector('.popup-consultation'),
             popupConsultationtContent = popupConsultationt.querySelector('.popup-content'),
-            hiddenCards = document.querySelectorAll('.hidden'),
-            shadowBlock = document.querySelectorAll('.shadow-block');
+            shadowBlock = document.querySelectorAll('.shadow-block'),
+            allInputs = document.querySelectorAll('input'),
+
+            popupCallInput = popupCall.querySelectorAll('input');
+            console.log(popupCallInput);
+            
+            
+      
+            
+
 
             
             
@@ -53,6 +61,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
         };
 
+        const resetFormInputs = () => {
+            allInputs.forEach(elem => {
+            elem.value = '';
+            });
+        };
+
         
         
         document.addEventListener('click', event => {
@@ -61,51 +75,69 @@ window.addEventListener('DOMContentLoaded', () => {
             const callClose = popupCall.querySelector('.popup-close'),
             discountClose = popupDiscount.querySelector('.popup-close'),
             checkClose = popupCheck.querySelector('.popup-close'),
-            consultationClose = popupConsultationt.querySelector('.popup-close');
+            consultationClose = popupConsultationt.querySelector('.popup-close'),
+
+            callSubmit = popupCall.querySelector('.capture-form-btn'),
+            discountSubmit = popupDiscount.querySelector('.capture-form-btn'),
+            checkSubmit = popupCheck.querySelector('.capture-form-btn'),
+            consultationSubmit = popupConsultationt.querySelector('.capture-form-btn'),
+
+            callValid = popupCall.querySelectorAll('inputs');
+            callValid.forEach(elem => {
+            console.log(elem);
+            });
             
+             
 
             let target = event.target;
-            
+
             if(target === callClose) {
+                event.preventDefault();
                 animClosePopup(popupCallContent);
-                console.log(target);
+                resetFormInputs();
+
                 } else if(target === discountClose) {
+                    event.preventDefault();
                     animClosePopup(popupDiscountContent);
-                    console.log(target);
+                    resetFormInputs();
+
                 } else if (target === checkClose) {
+                    event.preventDefault();
                     animClosePopup(popupCheckContent);
-                    console.log(target);
+                    resetFormInputs();
+
                 } else if (target === consultationClose) {
+                    event.preventDefault();
                     animClosePopup(popupConsultationtContent);
-                    console.log(target);
-                } else {
-                    
-                    if(target.matches('.call-btn')) {
+                    resetFormInputs();
+
+                } 
+
+                
+
+            if(target.matches('.call-btn')) {
                    
-                
-                
-
-                    if(target.matches('.construct-btn')) {
-                        popupDiscount.style.display = 'block';
-                        animPopup(popupDiscountContent);            
-                        } else {
-                        popupCall.style.display = 'block';
-                        animPopup(popupCallContent);
-                        }
-                        } else {
-             
-                        if(target.matches('.popup-call')) {
-                            animClosePopup(popupCallContent);
-                        } else if(target.matches('.popup-discount')) {
-                            animClosePopup(popupDiscountContent); 
-                        }  else if(target.matches('.popup-consultation')) {
-                            animClosePopup(popupConsultationtContent);
-                        } else if(target.matches('.popup-check')) {
-                            animClosePopup(popupCheckContent);
-                        }
+                if(target.matches('.construct-btn')) {
+                    popupDiscount.style.display = 'block';
+                    animPopup(popupDiscountContent);            
+                } else {
+                    popupCall.style.display = 'block';
+                    animPopup(popupCallContent);
                     }
-                }
+                } 
+                
+            if(target.matches('.popup-call')) {
+                    animClosePopup(popupCallContent);
 
+                } else if(target.matches('.popup-discount')) {
+                    animClosePopup(popupDiscountContent);
+
+                } else if(target.matches('.popup-consultation')) {
+                    animClosePopup(popupConsultationtContent);
+
+                } else if(target.matches('.popup-check')) {
+                    animClosePopup(popupCheckContent);
+                    }
 
             if(target.matches('.add-sentence-btn')) {
                 target.style.display = 'none';
@@ -131,9 +163,11 @@ window.addEventListener('DOMContentLoaded', () => {
             validQuestion = questionForm.querySelector('input');
 
             if(target.matches('.consultation-btn')) {
+                
                 if(validQuestion.value !== '') {
-                popupConsultationt.style.display = 'block';
-                animPopup(popupConsultationtContent);
+                    event.preventDefault();
+                    popupConsultationt.style.display = 'block';
+                    animPopup(popupConsultationtContent);
                 }
             }
 
