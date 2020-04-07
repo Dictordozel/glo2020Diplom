@@ -9,6 +9,8 @@ window.addEventListener('DOMContentLoaded', () => {
         panelHeading = document.querySelectorAll('.panel-heading'),
         constructBtn = document.querySelectorAll('.construct-btn');
 
+        
+
         const showPanels = (index) => {
             for(let i = 0; i < panelCollapse.length; i++) {
                 if(index === i) {
@@ -50,16 +52,136 @@ window.addEventListener('DOMContentLoaded', () => {
 
                 });
             }
+            
+
         });
+        
 
-        class Calculator {
+        
+
+        
+        
+        
+
+
+
+        const septCalculator = () => {
+
+
+            const accordion = document.getElementById('accordion'),
+            myonoffswitch = document.getElementById('myonoffswitch'),
+            myonoffswitchTwo = document.getElementById('myonoffswitch-two'),
+            selectBox = document.querySelectorAll('.select-box'),
+            titleText = document.querySelectorAll('.title-text'),
+            accordBodyTwo = document.getElementById('collapseTwo'),
+            formControl = document.querySelectorAll('.form-control'),
+            expandData = document.querySelectorAll('.expand'),
+            optionsControl = accordBodyTwo.querySelectorAll('option'),
+            control = document.getElementsByTagName('option');
+            //console.log(control);
+            
+
+
+            class Calculator {
+
                 constructor() {
+                    
+                    this.diameter = 0;
+                    this.ringsCount = 0;
+                    this.bottom = true;
+                    this.distanse = 0;
 
+
+                }
+
+                run() {
+
+                titleText[1].style.display = 'none';
+                selectBox[2].style.display = 'none';
+                selectBox[3].style.display = 'none';
+
+                this.eventListeners();
+                this.grabData();
+            
+
+                }
+
+
+                
+
+                constCheckbox() {
+                    if(myonoffswitch.checked) {
+                    console.log('ОДНОКАМЕРНЫЙ');
+                    titleText[1].style.display = 'none';
+                    selectBox[2].style.display = 'none';
+                    selectBox[3].style.display = 'none';
+                    //myonoffswitch.removeEventListener('change', this.constCheckbox);
+                        
+                        } else {
+                    console.log('ДВУХКАМЕРНЫЙ');
+                    titleText[1].style.display = 'block';
+                    selectBox[2].style.display = 'inline-block';
+                    selectBox[3].style.display = 'inline-block';
+
+                    //myonoffswitch.removeEventListener('change', this.constCheckbox);
+                    }
+                    
+                }
+
+                grabData(target) {
+
+                
+                    console.log(target);
+                      
+
+                    
+                        
+                
+                        
+                
+                    
+
+               
+
+                }
+
+                constCheckboxTwo() {
+                    if(myonoffswitchTwo.checked) {
+                        console.log('С ДНОМ');
+                    } else {
+                        console.log('БЕЗ ДНА');
+                    }
+                    
+                }
+
+                eventListeners() {
+                    myonoffswitch.addEventListener('change', this.constCheckbox);
+                    myonoffswitchTwo.addEventListener('change', this.constCheckboxTwo);
+                    accordBodyTwo.addEventListener('change', event => {
+                    let target = event.target;  
+                
+                
+                this.grabData(target.value);
+                            
+                   });
+                   
 
 
                 }
             }
-};
+
+            const calculator = new Calculator();
+            calculator.run();
+
+        };
+
+        septCalculator();
+
+
+
+
+        
+    };
 
     septConstructor();
 

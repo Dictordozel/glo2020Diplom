@@ -9,7 +9,11 @@ const sendForms = () => {
         successeMessage = 'Заявка принята',
         errorMessage = 'Произошла ошибка. Попробуйте ещё раз',
         allForms = document.querySelectorAll('form'),
-        allInputs = document.querySelectorAll('input');
+        allInputs = document.querySelectorAll('input'),
+        directorForm = document.querySelector('.director-form');
+
+        //console.log(allInputs);
+
 
         statusMessage.style.cssText = `font-size: 28px;
             font-family: 'MuseoSansCyrl_med', sans-serif;
@@ -28,12 +32,20 @@ const sendForms = () => {
                                         border-radius: 5px;`;
 
         const validInputs = () => {
+            const collapseFour = document.getElementById('collapseFour'),
+            distanseInput = collapseFour.querySelector('input');
+            console.log(distanseInput);
+
             allInputs.forEach(elem => {
                 elem.addEventListener('input', () => {
                     if(elem.matches('.phone-user')) {
                         elem.value = elem.value.replace(/[^)(0-9\+\-]/g, '');
                     } else {
-                        elem.value = elem.value.replace(/[^?!0-9\-,.а-яА-ЯёЁ\s]/g, '');
+                        if(distanseInput === elem){
+                            elem.value = elem.value.replace(/[^0-9]/g, '');
+                            } else {
+                                elem.value = elem.value.replace(/[^?!\-,.а-яА-ЯёЁ\s]/g, '');
+                                }
                     }                        
                 });
             });
@@ -48,14 +60,16 @@ const sendForms = () => {
             });
         };
 
-    allForms.forEach((elem) => {
-        //const director = document.querySelector('.director-form');
-        
-        elem.addEventListener('submit', (event) =>{
-            event.preventDefault();
+        allForms.forEach((elem) => {
 
-        document.body.append(statusMessage);
-        setTimeout(() => {
+        elem.addEventListener('submit', (event) => {
+            
+            let target = event.target;
+            console.log(target);
+            
+            event.preventDefault();
+            document.body.append(statusMessage);
+            setTimeout(() => {
             statusMessage.remove();
             }, 3000);
 
