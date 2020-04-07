@@ -13,17 +13,10 @@ window.addEventListener('DOMContentLoaded', () => {
             popupConsultationt = document.querySelector('.popup-consultation'),
             popupConsultationtContent = popupConsultationt.querySelector('.popup-content'),
             shadowBlock = document.querySelectorAll('.shadow-block'),
-            allInputs = document.querySelectorAll('input'),
-
-            popupCallInput = popupCall.querySelectorAll('input');
-            console.log(popupCallInput);
-            
-            
-      
-            
-
+            allInputs = document.querySelectorAll('input');
 
             
+             
             
         const animPopup = (elem) => {
             
@@ -67,8 +60,6 @@ window.addEventListener('DOMContentLoaded', () => {
             });
         };
 
-        
-        
         document.addEventListener('click', event => {
             
 
@@ -82,10 +73,10 @@ window.addEventListener('DOMContentLoaded', () => {
             checkSubmit = popupCheck.querySelector('.capture-form-btn'),
             consultationSubmit = popupConsultationt.querySelector('.capture-form-btn'),
 
-            callValid = popupCall.querySelectorAll('inputs');
-            callValid.forEach(elem => {
-            console.log(elem);
-            });
+            popupCallInput = popupCall.querySelectorAll('input'),
+            popupDiscountInput = popupDiscount.querySelectorAll('input'),
+            popupCheckInput = popupCheck.querySelectorAll('input'),
+            popupConsultationInput = popupConsultationt.querySelectorAll('input');
             
              
 
@@ -113,26 +104,46 @@ window.addEventListener('DOMContentLoaded', () => {
 
                 } 
 
-                popupCallInput.forEach(elem => {
-                    if(elem.value !== '') {
-                        if(target === callSubmit) {
-                            console.log(popupCallContent);
-                            animClosePopup(popupCallContent);
-        
-                        } else if (target === discountSubmit) {
-                            console.log(popupDiscountContent);
-                            animClosePopup(popupDiscountContent);
-        
-                        } else if(target === checkSubmit) {
-                            animClosePopup(popupCheckContent);
-        
-                        } else if (target === consultationSubmit) {
-                            animClosePopup(popupConsultationtContent);
-                        }
-                        console.log(elem);
+
+            if(target === callSubmit) {
+                if(popupCallInput[0].value !== '') {
+                    console.log('ИМЯ');
+                    console.log(popupCallInput[0].value);
+                    if(popupCallInput[1].value !== '') {
+                    console.log('ТЕЛЕФОН');
+                    console.log(popupCallInput[1].value);
+                    animClosePopup(popupCallContent);
                     } 
-                });
-                        
+
+                }
+            }
+
+            if(target === discountSubmit) {
+                if(popupDiscountInput[0].value !== '') {
+                    if(popupDiscountInput[1].value !== '') {
+                        animClosePopup(popupDiscountContent);
+                    } 
+                }
+            }
+
+            if(target === checkSubmit) {
+                if(popupCheckInput[0].value !== '') {
+                    if(popupCheckInput[1].value !== '') {
+                        animClosePopup(popupCheckContent);
+                    } 
+                }
+            }
+
+            if(target === consultationSubmit) {
+                if(popupConsultationInput[0].value !== '') {
+                    if(popupConsultationInput[1].value !== '') {
+                        animClosePopup(popupConsultationtContent);
+                    } 
+                }
+            }
+
+             
+            
 
             if(target.matches('.call-btn')) {
                    
@@ -189,8 +200,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     animPopup(popupConsultationtContent);
                 }
             }
-
-                     
+             
             
         });
 

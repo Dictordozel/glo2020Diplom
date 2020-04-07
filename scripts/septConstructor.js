@@ -8,10 +8,10 @@ window.addEventListener('DOMContentLoaded', () => {
         const panelCollapse = document.querySelectorAll('.panel-collapse'),
         panelHeading = document.querySelectorAll('.panel-heading'),
         constructBtn = document.querySelectorAll('.construct-btn');
-
         
 
         const showPanels = (index) => {
+
             for(let i = 0; i < panelCollapse.length; i++) {
                 if(index === i) {
                     panelCollapse[i].classList.toggle('in');
@@ -22,6 +22,7 @@ window.addEventListener('DOMContentLoaded', () => {
         };
 
         const showBtn = (index) => {
+            
             for (let i = 0; i < constructBtn.length; i++) {
                 if(index === i) {
                     panelCollapse[i].classList.toggle('in');
@@ -52,19 +53,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
                 });
             }
-            
-
+        
         });
         
-
-        
-
-        
-        
-        
-
-
-
         const septCalculator = () => {
 
 
