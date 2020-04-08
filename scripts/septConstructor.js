@@ -131,93 +131,105 @@ window.addEventListener('DOMContentLoaded', () => {
 
                 getDiameter() {
 
+                    if(formControl[0].value === '1.4 метра'){
+                        this.bodyDiameter = 0;
+                        console.log(this.bodyDiameter);
 
-
-                    if(formControl[0]) {
-    
-                        if(formControl[0].value === '1.4 метра'){
-                            this.bodyDiameter = 0;
-
-                        } else if (formControl[0].value === '2 метра'){
-                            const diameterPersentOne = Math.floor(this.bodyCount * 0.2);
-                            this.bodyDiameter = diameterPersentOne;
-                            console.log(this.bodyDiameter);
+                    } else if (formControl[0].value === '2 метра'){
+                        const diameter20PersentOne = Math.floor(this.bodyCount * 0.2);
+                        this.bodyDiameter = diameter20PersentOne;
+                        console.log(this.bodyDiameter);
                             
+                        
+                    } else {
+                        this.bodyDiameter = 0;
+                        console.log(this.bodyDiameter);
                         }
-                    }
+                    
 
-                    if(formControl[2]) {
-                        if(formControl[2].value === '1.4 метра') {
-                            this.bodyDiameter = 0;
+                    if(formControl[2].value === '1.4 метра') {
+                        this.bodyDiameter = 0;
                         } else if (formControl[2].value === '2 метра') {
-                            const diameterPersentTwo = Math.floor(this.bodyCount * 0.3);
-                            this.bodyDiameter = diameterPersentTwo;
+                            const diameter20PersentTwo = Math.floor(this.bodyCount * 0.2);
+                            this.bodyDiameter = diameter20PersentTwo;
                             console.log(this.bodyDiameter);
+                        
+                    } else {
+                        this.bodyDiameter = 0;
                         }
-                    }
 
                 }
 
                 getRingsCount() {
 
-                    if(formControl[1]) {
-                        if(formControl[1].value === '1 штука') {
+                    if(formControl[1].value === '1 штука') {
                             this.ringsCount = 0;
 
                         } else if(formControl[1].value === '2 штуки') {
-                            const ring30PercentOne = Math.floor(this.totalCount * 0.3);
+                            let ring30PercentOne = Math.floor(this.bodyCount * 0.3);
                             this.ringsCount = ring30PercentOne;
+                            console.log(this.ringsCount);
 
-                            } else if(formControl[1].value === '3 штуки') {
-                                const ring50PercentOne = Math.floor(this.totalCount * 0.5);
-                                this.ringsCount = ring50PercentOne;
-                            }
+                        } else if(formControl[1].value === '3 штуки') {
+                            let ring50PercentOne = Math.floor(this.bodyCount * 0.5);
+                            this.ringsCount = ring50PercentOne;
+                            console.log(this.ringsCount);
+                            
+                    } else {
+                        this.ringsCount = 0;
                     }
+                    
 
-                    if(formControl[3]) {
-                        if(formControl[3].value === '1 штука') {
-                            this.ringsCount = 0;
+                    if(formControl[3].value === '1 штука') {
+                        this.ringsCount = 0;
+                        console.log(this.ringsCount);
                             
                         } else if(formControl[3].value === '2 штуки') {
-                            const ring30PercentTwo = Math.floor(this.totalCount * 0.3);
+                            let ring30PercentTwo = Math.floor(this.bodyCount * 0.3);
                             this.ringsCount = ring30PercentTwo;
+                            console.log(this.ringsCount);
+                            console.log(this.ringsCount);
 
                             } else if(formControl[3].value === '3 штуки') {
-                                const ring50PercentTwo = Math.floor(this.totalCount * 0.5);
+                                let ring50PercentTwo = Math.floor(this.bodyCount * 0.5);
                                 this.ringsCount = ring50PercentTwo;
-                            }
+                                console.log(this.ringsCount);
+                            
+                    } else {
+                        this.ringsCount = 0;
                     }
 
                 
-                }
+            }
 
                 getBodyBottom() {
 
-                    if(myonoffswitch.checked) {
-                        if (myonoffswitchTwo.checked) {
-                            this.bodyBottom = 1000;
-                        } else {
-                            this.bodyBottom = 0;
-                            }
+                if(myonoffswitch.checked) {
+                     if (myonoffswitchTwo.checked) {
+                        this.bodyBottom = 1000;
+                    } else {
+                        this.bodyBottom = 0;
+                        }
                         
+                    } else {
+                        if (myonoffswitchTwo.checked) {
+                            this.bodyBottom = 2000;
                         } else {
-                            if (myonoffswitchTwo.checked) {
-                                this.bodyBottom = 2000;
-                            } else {
-                                this.bodyBottom = 0;                                        
-                            }
-                        }    
-                }
+                            this.bodyBottom = 0;                                        
+                        }
+                    }    
+            }
 
                 
                 eventListeners() {
                     
                     accordion.addEventListener('change', () => {
+                    this.getTotalCount();
                     this.getBodyCount();
                     this.getDiameter();
                     this.getRingsCount();
                     this.getBodyBottom();
-                    this.getTotalCount();
+                
                     
                     
                     });
