@@ -7,7 +7,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
         const panelCollapse = document.querySelectorAll('.panel-collapse'),
         panelHeading = document.querySelectorAll('.panel-heading'),
-        constructBtn = document.querySelectorAll('.construct-btn');
+        constructBtn = document.querySelectorAll('.construct-btn'),
+        collapseOne = document.getElementById('collapseOne'),
+        collapseOneTwo = document.getElementById('collapseOne-two');
+
+        collapseOne.classList.remove('in');
+        collapseOneTwo.classList.remove('in');
         
         const showPanels = (index) => {
 
@@ -93,18 +98,25 @@ window.addEventListener('DOMContentLoaded', () => {
                     this.getBodyBottom();
                     this.getDistance();
                     this.getTotalCount();
+
+                    this.showTotalCount();
                     
                     this.eventListeners();
     
+                }
+
+                showTotalCount() {
+
+                    calcResult.value = this.getTotalCount();
                 }
 
                 getTotalCount() {
 
                     const bodyDiameter = this.bodyDiameterOne + this.dodyDiameterTwo;
                     const ringsCount = this.ringsCountOne + this.ringsCountTwo;
-                    
-                    this.totalCount = this.bodyCount + bodyDiameter + ringsCount + this.bodyBottom;
-                    calcResult.value = this.totalCount; 
+                    const getResult = this.bodyCount + bodyDiameter + ringsCount + this.bodyBottom;
+                    //calcResult.value = this.totalCount; 
+                    return getResult;
                      
                 }
 
@@ -201,7 +213,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
                 getDistance() {
 
-                    this.distance = distanceCount.value;                
+                    this.distance = +distanceCount.value;                
                 }
                 
                 eventListeners() {
@@ -214,6 +226,7 @@ window.addEventListener('DOMContentLoaded', () => {
                         this.ringsPercentTwo();
                         this.getBodyBottom();
                         this.getTotalCount();
+                        this.showTotalCount();
                     });
 
                     distanceCount.addEventListener('input', this.getDistance.bind(this));    
@@ -224,13 +237,29 @@ window.addEventListener('DOMContentLoaded', () => {
             const calculator = new Calculator();
             calculator.run();
 
+            console.log(calculator);
+
+
+
+
+
+
+
+
+
+
+
+            
+
         };
 
         septCalculator();
+
     
     };
 
     septConstructor();
+
 
 });
 
