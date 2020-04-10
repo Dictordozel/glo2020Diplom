@@ -9,7 +9,6 @@ window.addEventListener('DOMContentLoaded', () => {
         panelHeading = document.querySelectorAll('.panel-heading'),
         constructBtn = document.querySelectorAll('.construct-btn');
         
-
         const showPanels = (index) => {
 
             for(let i = 0; i < panelCollapse.length; i++) {
@@ -58,20 +57,14 @@ window.addEventListener('DOMContentLoaded', () => {
         
         const septCalculator = () => {
 
-
             const myonoffswitch = document.getElementById('myonoffswitch'),
             myonoffswitchTwo = document.getElementById('myonoffswitch-two'),
             selectBox = document.querySelectorAll('.select-box'),
             titleText = document.querySelectorAll('.title-text'),
             calcResult = document.getElementById('calc-result'),
-            collapseOne = document.getElementById('collapseOne'),
-            collapseTwo = document.getElementById('collapseTwo'),
-            collapseThree = document.getElementById('collapseThree'),
             accordion = document.getElementById('accordion'),
             formControl = document.querySelectorAll('.form-control'),
             distanceCount = document.querySelector('#collapseFour input');
-
-            
 
             class Calculator {
 
@@ -188,9 +181,6 @@ window.addEventListener('DOMContentLoaded', () => {
                                 }
                 }
                     
-                
-
-
                 getBodyBottom() {
 
                     if(myonoffswitch.checked) {
@@ -209,10 +199,10 @@ window.addEventListener('DOMContentLoaded', () => {
                             }    
                 }
 
+                getDistance() {
 
-            getDistance() {
-                this.distance = distanceCount.value;                
-            }
+                    this.distance = distanceCount.value;                
+                }
                 
                 eventListeners() {
 
@@ -226,10 +216,8 @@ window.addEventListener('DOMContentLoaded', () => {
                         this.getTotalCount();
                     });
 
-                    distanceCount.addEventListener('input', this.getDistance.bind(this));
-                    
+                    distanceCount.addEventListener('input', this.getDistance.bind(this));    
                 }
-
 
             }
 
@@ -243,8 +231,6 @@ window.addEventListener('DOMContentLoaded', () => {
     };
 
     septConstructor();
-
-    
 
 });
 
