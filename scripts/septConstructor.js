@@ -60,188 +60,177 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
             const myonoffswitch = document.getElementById('myonoffswitch'),
-            onoffswitcCheckbox = document.querySelectorAll('.onoffswitch-checkbox'),
             myonoffswitchTwo = document.getElementById('myonoffswitch-two'),
             selectBox = document.querySelectorAll('.select-box'),
             titleText = document.querySelectorAll('.title-text'),
             calcResult = document.getElementById('calc-result'),
+            collapseOne = document.getElementById('collapseOne'),
             collapseTwo = document.getElementById('collapseTwo'),
-            formControl = collapseTwo.querySelectorAll('.form-control'),
-            accordion = document.getElementById('accordion');
+            collapseThree = document.getElementById('collapseThree'),
+            accordion = document.getElementById('accordion'),
+            formControl = document.querySelectorAll('.form-control'),
+            distanceCount = document.querySelector('#collapseFour input');
 
             
-
-           
-            
-
 
             class Calculator {
 
                 constructor() {
+
+                    this.ringsCountOne = 0;
+                    this.ringsCountTwo = 0;
                     
-                    this.ringsCount = 0;
-                    this.distanse = 0;
                     this.bodyCount = 0;
                     this.bodyBottom = 0;
                     this.totalCount = 0;
-                    this.bodyDiameter = 0;
-
+                    this.bodyDiameterOne = 0;
+                    this.bodyDiameterTwo = 0;
+                    this.distance = 0;
                 }
 
-            run() {
-               
-            titleText[1].style.display = 'none';
-            selectBox[2].style.display = 'none';
-            selectBox[3].style.display = 'none';
+                run() {
 
+                    this.bodyCountChecker();
 
+                    this.diameterPercentOne();
+                    this.ringsPercentOne();
+                    this.diameterPercentTwo();
+                    this.ringsPercentTwo();
 
-            this.getTotalCount();
-            this.getBodyCount();
-            this.getDiameter();
-            this.getRingsCount();
-            this.getBodyBottom();
-            this.eventListeners();
-            
-                
-                
+                    this.getBodyBottom();
+                    this.getDistance();
+                    this.getTotalCount();
+                    
+                    this.eventListeners();
+    
                 }
 
+                getTotalCount() {
 
-                
+                    const bodyDiameter = this.bodyDiameterOne + this.dodyDiameterTwo;
+                    const ringsCount = this.ringsCountOne + this.ringsCountTwo;
+                    
+                    this.totalCount = this.bodyCount + bodyDiameter + ringsCount + this.bodyBottom;
+                    calcResult.value = this.totalCount; 
+                     
+                }
 
-                
+                bodyCountChecker() {
 
-                getBodyCount() {
                     if(myonoffswitch.checked) {
-                    this.bodyCount = 10000;
-                    titleText[1].style.display = 'none';
-                    selectBox[2].style.display = 'none';
-                    selectBox[3].style.display = 'none';
-  
+                        this.bodyCount = 10000;
+                        titleText[1].style.display = 'none';
+                        selectBox[2].style.display = 'none';
+                        selectBox[3].style.display = 'none';
                     } else {
+                    
                         this.bodyCount = 15000;
                         titleText[1].style.display = 'block';
                         selectBox[2].style.display = 'inline-block';
                         selectBox[3].style.display = 'inline-block';
                     }
-                    
                 }
 
+                diameterPercentOne() {
 
-                getDiameter() {
-
-                    if(formControl[0].value === '1.4 метра'){
-                        this.bodyDiameter = 0;
-                        console.log(this.bodyDiameter);
-
-                    } else if (formControl[0].value === '2 метра'){
-                        const diameter20PersentOne = Math.floor(this.bodyCount * 0.2);
-                        this.bodyDiameter = diameter20PersentOne;
-                        console.log(this.bodyDiameter);
-                            
+                        if(formControl[0].value === '1.4 метра'){
+                            const  diameter0PersentOne = 0;
+                            this.bodyDiameterOne = diameter0PersentOne;
                         
-                    } else {
-                        this.bodyDiameter = 0;
-                        console.log(this.bodyDiameter);
-                        }
-                    
-
-                    if(formControl[2].value === '1.4 метра') {
-                        this.bodyDiameter = 0;
-                        } else if (formControl[2].value === '2 метра') {
-                            const diameter20PersentTwo = Math.floor(this.bodyCount * 0.2);
-                            this.bodyDiameter = diameter20PersentTwo;
-                            console.log(this.bodyDiameter);
-                        
-                    } else {
-                        this.bodyDiameter = 0;
-                        }
+                            } else if(formControl[0].value === '2 метра'){
+                                let diameter20PersentOne = Math.floor(this.bodyCount * 0.2);
+                                this.bodyDiameterOne = diameter20PersentOne;
+                                }
 
                 }
-
-                getRingsCount() {
-
-                    if(formControl[1].value === '1 штука') {
-                            this.ringsCount = 0;
-
-                        } else if(formControl[1].value === '2 штуки') {
-                            let ring30PercentOne = Math.floor(this.bodyCount * 0.3);
-                            this.ringsCount = ring30PercentOne;
-                            console.log(this.ringsCount);
-
-                        } else if(formControl[1].value === '3 штуки') {
-                            let ring50PercentOne = Math.floor(this.bodyCount * 0.5);
-                            this.ringsCount = ring50PercentOne;
-                            console.log(this.ringsCount);
                             
-                    } else {
-                        this.ringsCount = 0;
-                    }
-                    
-
-                    if(formControl[3].value === '1 штука') {
-                        this.ringsCount = 0;
-                        console.log(this.ringsCount);
-                            
-                        } else if(formControl[3].value === '2 штуки') {
-                            let ring30PercentTwo = Math.floor(this.bodyCount * 0.3);
-                            this.ringsCount = ring30PercentTwo;
-                            console.log(this.ringsCount);
-                            console.log(this.ringsCount);
-
+                ringsPercentOne() {
+            
+                        if(formControl[1].value === '1 штука') {
+                            const ring30PercentOne = 0;
+                            this.ringsCountOne = ring30PercentOne;
+                                
+                                } else if(formControl[1].value === '2 штуки') {
+                                    let ring30PercentOne = Math.floor(this.bodyCount * 0.3);
+                                    this.ringsCountOne = ring30PercentOne;
+                                
+                                } else if(formControl[1].value === '3 штуки') {
+                                    let ring50PercentOne = Math.floor(this.bodyCount * 0.5);
+                                    this.ringsCountOne = ring50PercentOne;
+                                    }
+                }
+            
+                diameterPercentTwo() {
+            
+                        if(formControl[2].value === '1.4 метра') {
+                            const diameter0PersentTwo = 0;
+                            this.dodyDiameterTwo = diameter0PersentTwo;
+                
+                                } else if (formControl[2].value === '2 метра') {
+                                    let diameter20PersentTwo = Math.floor(this.bodyCount * 0.2);
+                                    this.dodyDiameterTwo = diameter20PersentTwo;
+                                    }
+                }
+            
+                ringsPercentTwo() {
+            
+                        if(formControl[3].value === '1 штука') {
+                            const ring0PercentTwo = 0;
+                            this.ringsCountTwo = ring0PercentTwo;
+                                                
+                            } else if(formControl[3].value === '2 штуки') {
+                                let ring30PercentTwo = Math.floor(this.bodyCount * 0.3);
+                                this.ringsCountTwo = ring30PercentTwo;
+                
                             } else if(formControl[3].value === '3 штуки') {
                                 let ring50PercentTwo = Math.floor(this.bodyCount * 0.5);
-                                this.ringsCount = ring50PercentTwo;
-                                console.log(this.ringsCount);
-                            
-                    } else {
-                        this.ringsCount = 0;
-                    }
-
+                                this.ringsCountTwo = ring50PercentTwo;
+                                }
+                }
+                    
                 
-            }
+
 
                 getBodyBottom() {
 
-                if(myonoffswitch.checked) {
-                     if (myonoffswitchTwo.checked) {
-                        this.bodyBottom = 1000;
-                    } else {
-                        this.bodyBottom = 0;
-                        }
-                        
-                    } else {
-                        if (myonoffswitchTwo.checked) {
-                            this.bodyBottom = 2000;
+                    if(myonoffswitch.checked) {
+                        if(myonoffswitchTwo.checked) {
+                            this.bodyBottom = 1000;
                         } else {
-                            this.bodyBottom = 0;                                        
-                        }
-                    }    
-            }
+                            this.bodyBottom = 0;
+                            }
+                            
+                        } else {
+                            if(myonoffswitchTwo.checked) {
+                                this.bodyBottom = 2000;
+                            } else {
+                                this.bodyBottom = 0;                                        
+                                }
+                            }    
+                }
 
+
+            getDistance() {
+                this.distance = distanceCount.value;                
+            }
                 
                 eventListeners() {
-                    
+
                     accordion.addEventListener('change', () => {
-                    this.getTotalCount();
-                    this.getBodyCount();
-                    this.getDiameter();
-                    this.getRingsCount();
-                    this.getBodyBottom();
-                
-                    
-                    
+                        this.bodyCountChecker();
+                        this.diameterPercentOne();
+                        this.ringsPercentOne();
+                        this.diameterPercentTwo();
+                        this.ringsPercentTwo();
+                        this.getBodyBottom();
+                        this.getTotalCount();
                     });
-          
+
+                    distanceCount.addEventListener('input', this.getDistance.bind(this));
                     
                 }
 
-                getTotalCount() {
-                    this.totalCount = this.bodyCount + this.bodyDiameter + this.ringsCount + this.bodyBottom;
-                    calcResult.value = this.totalCount; 
-                     
-                }
+
             }
 
             const calculator = new Calculator();
