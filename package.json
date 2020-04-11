@@ -1,0 +1,23 @@
+{
+  "name": "glo2020diplom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dictordozel/glo2020Diplom.git"
+  },
+  "author": "DictorDozel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dictordozel/glo2020Diplom/issues"
+  },
+  "homepage": "https://github.com/Dictordozel/glo2020Diplom#readme",
+  "devDependencies": {
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  }
+}
