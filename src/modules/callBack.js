@@ -1,3 +1,7 @@
+
+
+    'use strict';
+
     const callBack = () => {
         
         const popupCall = document.querySelector('.popup-call'),
@@ -10,6 +14,29 @@
             popupConsultationtContent = popupConsultationt.querySelector('.popup-content'),
             shadowBlock = document.querySelectorAll('.shadow-block'),
             allInputs = document.querySelectorAll('input');
+
+            const questionForm = document.querySelector('.director-form'),
+            validQuestion = questionForm.querySelector('input');
+
+
+
+            const callClose = popupCall.querySelector('.popup-close'),
+            discountClose = popupDiscount.querySelector('.popup-close'),
+            checkClose = popupCheck.querySelector('.popup-close'),
+            consultationClose = popupConsultationt.querySelector('.popup-close'),
+
+            callSubmit = popupCall.querySelector('.capture-form-btn'),
+            discountSubmit = popupDiscount.querySelector('.capture-form-btn'),
+            checkSubmit = popupCheck.querySelector('.capture-form-btn'),
+            consultationSubmit = popupConsultationt.querySelector('.capture-form-btn'),
+
+            popupCallInput = popupCall.querySelectorAll('input'),
+            popupDiscountInput = popupDiscount.querySelectorAll('input'),
+            popupCheckInput = popupCheck.querySelectorAll('input'),
+            popupConsultationInput = popupConsultationt.querySelectorAll('input'),
+
+            consultationForm = popupConsultationt.querySelector('.capture-form');
+
 
             
              
@@ -58,24 +85,6 @@
 
         document.addEventListener('click', event => {
             
-
-            const callClose = popupCall.querySelector('.popup-close'),
-            discountClose = popupDiscount.querySelector('.popup-close'),
-            checkClose = popupCheck.querySelector('.popup-close'),
-            consultationClose = popupConsultationt.querySelector('.popup-close'),
-
-            callSubmit = popupCall.querySelector('.capture-form-btn'),
-            discountSubmit = popupDiscount.querySelector('.capture-form-btn'),
-            checkSubmit = popupCheck.querySelector('.capture-form-btn'),
-            consultationSubmit = popupConsultationt.querySelector('.capture-form-btn'),
-
-            popupCallInput = popupCall.querySelectorAll('input'),
-            popupDiscountInput = popupDiscount.querySelectorAll('input'),
-            popupCheckInput = popupCheck.querySelectorAll('input'),
-            popupConsultationInput = popupConsultationt.querySelectorAll('input');
-            
-             
-
             let target = event.target;
 
             if(target === callClose) {
@@ -130,16 +139,100 @@
                 }
             }
 
+            if(target.matches('.consultation-btn')) {
+                
+                if(validQuestion.value !== '') {
+                    
+                    event.preventDefault();
+                    popupConsultationt.style.display = 'block';
+                    animPopup(popupConsultationtContent);
+                    
+                }
+            }
+
+
+            const statusMessage = document.createElement('div'),
+            loadMessage = 'Идёт загрузка...',
+            successeMessage = 'Заявка принята',
+            errorMessage = 'Произошла ошибка. Попробуйте ещё раз';
+
+            statusMessage.style.cssText = `font-size: 28px;
+            font-family: 'MuseoSansCyrl_med', sans-serif;
+                                        line-height: 48px;
+                                        text-align: center;
+                                        color: #f28c07;
+                                        width: 600px;
+                                        display: block;
+                                        padding: 100px;
+                                        position: fixed;
+                                        top: 25%;
+                                        left: 50%;
+                                        z-index: 99;
+                                        transform: translateX(-50%);
+                                        background: rgba(255,255,255, 0.8);
+                                        border-radius: 5px;`;
+
+          
+
             if(target === consultationSubmit) {
+
+                event.preventDefault();
+
+                const formData = new FormData(questionForm);
+
+                
+
                 if(popupConsultationInput[0].value !== '') {
+                    formData.append('user_name', popupConsultationInput[0].value);
                     if(popupConsultationInput[1].value !== '') {
+                        formData.append('user_phone', popupConsultationInput[1].value);
+                        let body = {};
+                        formData.forEach((elem, index) => {
+                            body[index] = elem;
+                            });
+
+                        document.body.append(statusMessage);
+                        setTimeout(() => {
+                        statusMessage.remove();
+                        }, 3000);
+
+
+                        const postData = (formData) => {
+                            return fetch('./server.php', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                    },
+                                body: JSON.stringify(formData) 
+                                });
+                            };
+
+                            statusMessage.textContent = loadMessage;
+                            
+            
+                            postData(body)
+                            .then((response) => {
+                                if(response.status !== 200) { 
+                                throw new Error('Status network: ' + response.status);
+                                }
+                                statusMessage.textContent = successeMessage;
+                            })
+                            .catch((error) => {
+                                statusMessage.textContent = errorMessage;
+                                console.error(error);
+                            });
+
+                        console.log(body);
+                                              
+
                         animClosePopup(popupConsultationtContent);
+                        resetFormInputs();
+                        
+                    
                     } 
                 }
             }
 
-             
-            
 
             if(target.matches('.call-btn')) {
                    
@@ -160,6 +253,7 @@
 
                 } else if(target.matches('.popup-consultation')) {
                     animClosePopup(popupConsultationtContent);
+                    
 
                 } else if(target.matches('.popup-check')) {
                     animClosePopup(popupCheckContent);
@@ -185,25 +279,24 @@
                 animPopup(popupCheckContent);
             }
 
-            const questionForm = document.querySelector('.director-form'),
-            validQuestion = questionForm.querySelector('input');
+            
 
-            if(target.matches('.director-btn')) {
-                
-                if(validQuestion.value !== '') {
-                    event.preventDefault();
-                    popupConsultationt.style.display = 'block';
-                    animPopup(popupConsultationtContent);
-                }
-            }
+           
              
             
         });
+    
+
+        
+
+      
 
 
     };
 
     export default callBack;
+
+
 
 
 
